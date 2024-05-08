@@ -48,7 +48,7 @@ module.exports = {
       config: {
         repository: {
           owner: 'Dalinnar',
-          name: 'minemev-desktop'
+          name: 'Minemev-desktop'
         },
         prerelease: true
       }
