@@ -1,0 +1,4 @@
+###version 1.2.0
+-added correctly the icon on the app
+-added update checker to find the latest release on github
+-added a home button to go back to minemev if you open another tab by mistake

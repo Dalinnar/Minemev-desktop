@@ -2,8 +2,11 @@ const { app, BrowserWindow, dialog, ipcMain, Menu } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const { screen } = require('electron');
+const { obtenerUltimaVersion } = require('./update_packager');
 var unrarjs = require('node-unrar-js')
 var unzipper = require("unzipper");
+const { shell } = require('electron');
+const packageJson = require('./package.json');
 
 
 
@@ -88,6 +91,36 @@ function createWindow() {
   });
 }
 
+
+app.on('ready', async () => {
+  try {
+    const latestVersion = await obtenerUltimaVersion('Dalinnar', 'Minemev-desktop');
+    const currentVersion = packageJson.version;
+    
+
+    if (latestVersion !== 'v'+currentVersion) {
+      const result = dialog.showMessageBoxSync({
+        type: 'info',
+        title: 'Update Available',
+        message: 'A new update is available.',
+        buttons: ['OK', 'Download']
+      });
+
+      // Si el usuario selecciona "Download", abre una nueva ventana del navegador
+      if (result === 1) {
+        const repoUrl = 'https://github.com/Dalinnar/Minemev-desktop/releases/'; // URL de tu repositorio en GitHub
+        shell.openExternal(repoUrl);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  // Resto del código para crear la ventana principal, etc.
+});
+
+
+
 // Evento cuando la aplicación está lista
 app.on('ready', () => {
   const downloadPath = getDownloadPath();
@@ -138,9 +171,16 @@ app.on('ready', () => {
         { type: 'separator' },
         { role: 'quit' }
       ]
+    },
+    {
+      label: 'Home',
+      click: () => {
+        // Redirigir a www.minemev.com
+        mainWindow.loadURL('https://www.minemev.com');
+      }
     }
   ];
-
+  
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });
