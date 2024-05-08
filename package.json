@@ -1,0 +1,50 @@
+{
+  "name": "minemev-desktop",
+  "productName": "minemev desktop",
+  "version": "1.1.2",
+  "description": "MineMev Desktop",
+  "main": "main.js",
+  "author": "Signature Developer Dalinnar",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron-forge/publisher-github": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^28.2.0"
+  },
+  "dependencies": {
+    "electron-dl": "^3.5.2",
+    "electron-settings": "^4.0.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "fs-extra": "^11.2.0",
+    "icon-gen": "^4.0.0",
+    "mkdirp": "^3.0.1",
+    "node-unrar": "^0.1.6",
+    "node-unrar-js": "^2.0.2",
+    "unzipper": "^0.11.3"
+  },
+  "build": {
+    "appId": "com.signature.minemevdesktop",
+    "win": {
+      "icon": "./icons/favicon.ico"
+    },
+    "mac": {
+      "icon": "./icons/app.icns"
+    },
+    "linux": {
+      "icon": "./icons/favicon-228.png"
+    }
+  }
+}
